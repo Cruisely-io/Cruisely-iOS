@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>120917410824-hp7d0617l99m6vrt1tgp6b28g6be3vun.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.120917410824-hp7d0617l99m6vrt1tgp6b28g6be3vun</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCmM1h5dkUwd0O_He2b9e8BrBZCEwZCTv0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>120917410824</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>io.Cruisely.Cruisely</string>
+	<key>PROJECT_ID</key>
+	<string>cruisely-io</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cruisely-io.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:120917410824:ios:76e9879248a0f1c25abdbd</string>
+</dict>
+</plist>
