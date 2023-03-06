@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct CruiselyApp: App {
+    @StateObject var locationViewModel = LocationSearchViewModel()
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environmentObject(locationViewModel)
         }
     }
 }

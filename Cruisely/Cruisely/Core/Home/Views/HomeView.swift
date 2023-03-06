@@ -13,10 +13,10 @@ struct HomeView: View {
     var body: some View {
         ZStack(alignment: .top) {
             CruiselyMapViewRepresentable()
-                .ignoresSafeArea()
+                .ignoresSafeArea(.all)
             
             if showLocationSearchView {
-                LocationSearchView()
+                LocationSearchView(showLocationSearchView: $showLocationSearchView)
             } else {
                 LocationSearchActivationView()
                     .padding(.top, 72)
