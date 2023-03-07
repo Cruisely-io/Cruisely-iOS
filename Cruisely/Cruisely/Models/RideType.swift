@@ -8,25 +8,43 @@
 import Foundation
 
 enum RideType: Int, CaseIterable, Identifiable {
-    case uberX
-    case uberBlack
-    case uberXL
+    case cruiser
+    case cruiserLux
+    case cruiserBig
     
     var id: Int { return rawValue }
     
     var description: String {
         switch self {
-        case .uberX: return "UberX"
-        case .uberBlack: return "UberBlack"
-        case .uberXL: return "UberXL"
+        case .cruiser: return "Cruiser"
+        case .cruiserLux: return "Cruiser Lux"
+        case .cruiserBig: return "Cruiser Big"
         }
     }
     
     var imageName: String {
         switch self {
-        case .uberX: return "uber-x"
-        case .uberBlack: return "uber-black"
-        case .uberXL: return "uber-x"
+        case .cruiser: return "uber-x"
+        case .cruiserLux: return "uber-black"
+        case .cruiserBig: return "uber-x"
+        }
+    }
+    
+    var baseFare: Double {
+        switch self {
+        case .cruiser: return 5
+        case .cruiserLux: return 20
+        case .cruiserBig: return 10
+        }
+    }
+    
+    func computePrice(for distanceInMeters: Double) -> Double {
+        let distanceInMiles = distanceInMeters / 1600
+        
+        switch self {
+        case .cruiser: return distanceInMiles * 1.5 + baseFare
+        case .cruiserLux: return distanceInMiles * 2.0 + baseFare
+        case .cruiserBig: return distanceInMiles * 1.75 + baseFare
         }
     }
 }
