@@ -62,6 +62,7 @@ struct LocationSearchView: View {
                 }
             }
         }
+        .background(ColorTheme.backgroundColor)
         .background(Color.white)
         .edgesIgnoringSafeArea(.all)
     }

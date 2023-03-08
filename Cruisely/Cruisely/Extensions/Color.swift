@@ -8,5 +8,11 @@
 import SwiftUI
 
 extension Color {
+    static let theme = ColorTheme()
+    
+}
+
+struct ColorTheme {
+    static let backgroundColor = Color("BackgroundColor")
     static let cruiselyBlue = Color("CruiselyBlue")
 }

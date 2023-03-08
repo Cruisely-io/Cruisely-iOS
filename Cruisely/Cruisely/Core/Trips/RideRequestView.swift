@@ -40,19 +40,22 @@ struct RideRequestView: View {
                         
                         Spacer()
                         
-                        Text("1: 30PM")
+                        Text(locationViewModel.pickupTime ?? "")
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundColor(.gray)
                     }
                     .padding(.bottom, 10)
                     
                     HStack {
-                        Text("Starbucks Coffee")
-                            .font(.system(size: 16, weight: .semibold))
+                        
+                        if let location = locationViewModel.selectedCruiselyLocation {
+                            Text(location.title)
+                                .font(.system(size: 16, weight: .semibold))
+                        }
                         
                         Spacer()
                         
-                        Text("1: 45 PM")
+                        Text(locationViewModel.dropOffTime ?? "")
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundColor(.gray)
                     }
@@ -141,7 +144,7 @@ struct RideRequestView: View {
             })
         }
         .padding(.bottom, 24)
-        .background(Color.white)
+        .background(ColorTheme.backgroundColor)
         .cornerRadius(25)
     }
 }

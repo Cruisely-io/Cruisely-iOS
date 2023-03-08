@@ -9,6 +9,7 @@ import Foundation
 
 enum RideType: Int, CaseIterable, Identifiable {
     case cruiser
+    case cruiserPet
     case cruiserLux
     case cruiserBig
     
@@ -17,6 +18,7 @@ enum RideType: Int, CaseIterable, Identifiable {
     var description: String {
         switch self {
         case .cruiser: return "Cruiser"
+        case .cruiserPet: return "Cruiser Pet"
         case .cruiserLux: return "Cruiser Lux"
         case .cruiserBig: return "Cruiser Big"
         }
@@ -25,6 +27,7 @@ enum RideType: Int, CaseIterable, Identifiable {
     var imageName: String {
         switch self {
         case .cruiser: return "uber-x"
+        case .cruiserPet: return "uber-x"
         case .cruiserLux: return "uber-black"
         case .cruiserBig: return "uber-x"
         }
@@ -33,6 +36,7 @@ enum RideType: Int, CaseIterable, Identifiable {
     var baseFare: Double {
         switch self {
         case .cruiser: return 5
+        case .cruiserPet: return 5
         case .cruiserLux: return 20
         case .cruiserBig: return 10
         }
@@ -42,9 +46,10 @@ enum RideType: Int, CaseIterable, Identifiable {
         let distanceInMiles = distanceInMeters / 1600
         
         switch self {
-        case .cruiser: return distanceInMiles * 1.5 + baseFare
-        case .cruiserLux: return distanceInMiles * 2.0 + baseFare
-        case .cruiserBig: return distanceInMiles * 1.75 + baseFare
+        case .cruiser: return distanceInMiles * 2.15 + baseFare
+        case .cruiserPet: return distanceInMiles * 2.40 + baseFare
+        case .cruiserLux: return distanceInMiles * 3.0 + baseFare
+        case .cruiserBig: return distanceInMiles * 2.50 + baseFare
         }
     }
 }
