@@ -13,6 +13,8 @@ extension Color {
 }
 
 struct ColorTheme {
-    static let backgroundColor = Color("BackgroundColor")
-    static let cruiselyBlue = Color("CruiselyBlue")
+    let backgroundColor = Color("BackgroundColor")
+    let secondaryBackgroundColor = Color("SecondaryBackgroundColor")
+    let primaryTextColor = Color("PrimaryTextColor")
+    let cruiselyBlue = Color("CruiselyBlue")
 }
