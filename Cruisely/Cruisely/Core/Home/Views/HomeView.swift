@@ -10,41 +10,48 @@ import SwiftUI
 struct HomeView: View {
     @State private var mapState = MapViewState.noInput
     @EnvironmentObject var locationViewModel: LocationSearchViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            ZStack(alignment: .top) {
-                CruiselyMapViewRepresentable(mapState: $mapState)
-                    .ignoresSafeArea(.all)
-                
-                if mapState == .searchingForLocation {
-                    LocationSearchView(mapState: $mapState)
-                } else if mapState == .noInput {
-                    LocationSearchActivationView()
-                        .padding(.top, 72)
-                        .onTapGesture {
-                            withAnimation(.spring()) {
-                                mapState = .searchingForLocation
-                            }
+        Group {
+            if authViewModel.userSession == nil {
+                LogInView()
+            } else {
+                ZStack(alignment: .bottom) {
+                    ZStack(alignment: .top) {
+                        CruiselyMapViewRepresentable(mapState: $mapState)
+                            .ignoresSafeArea(.all)
+                        
+                        if mapState == .searchingForLocation {
+                            LocationSearchView(mapState: $mapState)
+                        } else if mapState == .noInput {
+                            LocationSearchActivationView()
+                                .padding(.top, 72)
+                                .onTapGesture {
+                                    withAnimation(.spring()) {
+                                        mapState = .searchingForLocation
+                                    }
+                                }
                         }
+                        
+                        MapViewActionButton(mapState: $mapState)
+                            .padding(.leading)
+                            .padding(.top, 4)
+                    }
+                    
+                    if mapState == .locationSelected || mapState == .polylineAdded {
+                        RideRequestView()
+                            .transition(.move(edge: .bottom))
+                    }
                 }
-                
-                MapViewActionButton(mapState: $mapState)
-                    .padding(.leading)
-                    .padding(.top, 4)
-            }
-            
-            if mapState == .locationSelected || mapState == .polylineAdded {
-                RideRequestView()
-                    .transition(.move(edge: .bottom))
+                .edgesIgnoringSafeArea(.bottom)
+                .onReceive(LocationManager.shared.$userLocation, perform: { location in
+                    if let location = location {
+                        locationViewModel.userLocation = location
+                    }
+            })
             }
         }
-        .edgesIgnoringSafeArea(.bottom)
-        .onReceive(LocationManager.shared.$userLocation, perform: { location in
-            if let location = location {
-                locationViewModel.userLocation = location
-            }
-        })
     }
 }
 

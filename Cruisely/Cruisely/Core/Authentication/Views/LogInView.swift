@@ -92,6 +92,7 @@ struct LogInView: View {
                     }
                     .padding(.vertical)
                     
+                    Spacer()
                     
                     Button(action: {
                         
@@ -115,7 +116,7 @@ struct LogInView: View {
                     
                     NavigationLink(
                         destination: RegistrationView()
-                            .navigationBarBackButtonHidden(true ),
+                            .navigationBarBackButtonHidden(true),
                         label: {
                             Text("Don't have an account?")
                                 .font(.system(size: 14))
