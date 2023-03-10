@@ -12,7 +12,7 @@ struct CruiselyApp: App {
     @StateObject var locationViewModel = LocationSearchViewModel()
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            LogInView()
                 .environmentObject(locationViewModel)
         }
     }

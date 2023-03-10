@@ -10,8 +10,8 @@ target 'Cruisely' do
 pod 'FirebaseAnalytics'
 pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
-pod 'FirebaseMessaging'
 pod 'FirebaseStorage'
 pod 'FirebaseCrashlytics'
+pod 'FirebaseFirestoreSwift'
 
 end

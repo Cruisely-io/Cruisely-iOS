@@ -8,8 +8,71 @@
 import SwiftUI
 
 struct RegistrationView: View {
+    
+    @State private var fullname = ""
+    @State private var email = ""
+    @State private var passsword = ""
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.black.ignoresSafeArea()
+            
+            VStack(alignment: .leading, spacing: 20) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "arrow.left")
+                        .font(.title)
+                        .imageScale(.medium)
+                        .padding()
+                })
+                
+                Text("Create new account")
+                    .font(.system(size: 40))
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.leading)
+                    .frame(width: 250)
+                
+                Spacer()
+                
+                VStack {
+                    VStack(spacing: 56) {
+                        CustomInputField(text: $fullname, title: "Full Name", placeholder: "Enter your name")
+                        
+                        CustomInputField(text: $email, title: "Email Address", placeholder: "name@example.com")
+                        
+                        CustomInputField(text: $passsword, title: "Password", placeholder: "Enter your password")
+                    }
+                    .padding(.leading)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        
+                    }, label: {
+                        HStack {
+                            Text("SIGN UP")
+                                .foregroundColor(.black)
+                                .font(.headline)
+                                .fontWeight(.bold)
+                            
+                            Image(systemName: "arrow.right")
+                                .foregroundColor(.black)
+                                .font(.headline)
+                        }
+                        .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+                    })
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    
+                    Spacer()
+                }
+            }
+            .foregroundColor(.white)
+        }
+        .navigationBarHidden(true)
+
     }
 }
 
