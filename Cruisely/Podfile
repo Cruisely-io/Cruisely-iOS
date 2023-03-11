@@ -7,11 +7,5 @@ target 'Cruisely' do
 
   # Pods for Cruisely
 
-pod 'FirebaseAnalytics'
-pod 'FirebaseAuth'
-pod 'FirebaseFirestore'
-pod 'FirebaseStorage'
-pod 'FirebaseCrashlytics'
-pod 'FirebaseFirestoreSwift'
 
 end
