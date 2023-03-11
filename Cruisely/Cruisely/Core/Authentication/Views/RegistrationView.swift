@@ -13,8 +13,10 @@ struct RegistrationView: View {
     @State private var email = ""
     @State private var passsword = ""
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var authViewModel: AuthViewModel
 
     var body: some View {
+        
         ZStack {
             Color.black.ignoresSafeArea()
             
@@ -38,18 +40,25 @@ struct RegistrationView: View {
                 
                 VStack {
                     VStack(spacing: 56) {
-                        CustomInputField(text: $fullname, title: "Full Name", placeholder: "Enter your name")
+                        CustomInputField(text: $fullname,
+                                         title: "Full Name",
+                                         placeholder: "Enter your name")
                         
-                        CustomInputField(text: $email, title: "Email Address", placeholder: "name@example.com")
+                        CustomInputField(text: $email,
+                                         title: "Email Address",
+                                         placeholder: "name@example.com")
                         
-                        CustomInputField(text: $passsword, title: "Password", placeholder: "Enter your password")
+                        CustomInputField(text: $passsword,
+                                         title: "Create Password",
+                                         placeholder: "Enter your password",
+                                         isSecureField: true)
                     }
                     .padding(.leading)
                     
                     Spacer()
                     
                     Button(action: {
-                        
+                        authViewModel.registerUser(withEmail: email, password: passsword, fullname: fullname)
                     }, label: {
                         HStack {
                             Text("SIGN UP")

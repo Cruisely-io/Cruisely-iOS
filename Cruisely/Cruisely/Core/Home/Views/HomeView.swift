@@ -49,8 +49,9 @@ struct HomeView: View {
                     if let location = location {
                         locationViewModel.userLocation = location
                     }
-            })
+                })
             }
+            
         }
     }
 }
