@@ -8,6 +8,8 @@
 import SwiftUI
 import FirebaseCore
 import FirebaseAuth
+import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 
 class AuthViewModel: ObservableObject {
@@ -15,6 +17,7 @@ class AuthViewModel: ObservableObject {
     
     init() {
         userSession = Auth.auth().currentUser
+        fetchUser()
     }
     
     func signIn(withEmail email: String, password: String) {
@@ -33,7 +36,11 @@ class AuthViewModel: ObservableObject {
                 print("DEBUG: Failed to sign up with error \(error.localizedDescription)")
                 return
             }
-            self.userSession = result?.user
+            guard let firebaseUser = result?.user else { return }
+            self.userSession = firebaseUser
+            let user = User(uid: firebaseUser.uid, fullname: fullname, email: email)
+            guard let encodedUser = try? Firestore.Encoder().encode(user) else { return }
+            Firestore.firestore().collection("users").document(firebaseUser.uid).setData(encodedUser)
         }
     }
     
@@ -43,6 +50,22 @@ class AuthViewModel: ObservableObject {
             self.userSession = nil
         } catch let error {
             print("DEBUG: Failed to sign out with error: \(error.localizedDescription)")
+        }
+    }
+    
+    func fetchUser() {
+        guard let uid = self.userSession?.uid else { return }
+        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, error in
+            if let error = error {
+                print("DEBUG: Failed to fetch user info with error \(error.localizedDescription)")
+                return
+            }
+            
+            guard let snapshot = snapshot else { return }
+            
+            guard let user = try? snapshot.data(as: User.self) else { return }
+            
+            print("DEBUG: User is \(user.fullname)")
         }
     }
 }
