@@ -32,7 +32,7 @@ struct CruiselyMapViewRepresentable: UIViewRepresentable {
         case .locationSelected:
             print("DEBUG: Adding stuff to map...")
             if let coordinate = locationViewModel.selectedCruiselyLocation?.coordinate {
-                context.coordinator.addAndSeelectAnnotation(withCoordinate: coordinate)
+                context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
                 context.coordinator.configurePolyline(withDestinationCoordinate: coordinate)
             }
             break
@@ -77,7 +77,7 @@ extension CruiselyMapViewRepresentable {
         }
         
         //MARK: - Helpers
-        func addAndSeelectAnnotation(withCoordinate coordinate: CLLocationCoordinate2D) {
+        func addAndSelectAnnotation(withCoordinate coordinate: CLLocationCoordinate2D) {
             parent.mapView.removeAnnotations(parent.mapView.annotations)
             let anno = MKPointAnnotation()
             anno.coordinate = coordinate

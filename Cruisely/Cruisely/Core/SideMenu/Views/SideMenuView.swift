@@ -138,8 +138,12 @@ struct SideMenuView: View {
             .padding(.top, 0)
             .foregroundColor(Color.theme.primaryTextColor)
             
+            Spacer()
+
+            
         }
         .navigationBarHidden(true)
+        .padding(.top, 32)
     }
 }
 
