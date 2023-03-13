@@ -14,6 +14,7 @@ import FirebaseFirestore
 
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
+    @Published var currentUser: User?
     
     init() {
         userSession = Auth.auth().currentUser
@@ -62,10 +63,9 @@ class AuthViewModel: ObservableObject {
             }
             
             guard let snapshot = snapshot else { return }
-            
             guard let user = try? snapshot.data(as: User.self) else { return }
+            self.currentUser = user
             
-            print("DEBUG: User is \(user.fullname)")
         }
     }
 }

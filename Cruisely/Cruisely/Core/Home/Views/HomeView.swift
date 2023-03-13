@@ -17,16 +17,20 @@ struct HomeView: View {
         Group {
             if authViewModel.userSession == nil {
                 LogInView()
-            } else {
+            } else if let user = authViewModel.currentUser {
                 NavigationView {
                     ZStack {
                         if showSideMenu {
-                            SideMenuView()
+                            SideMenuView(user: user)
                         }
                         mapView
                             .offset(x: showSideMenu ? 316 : 0)
                             .shadow(color: showSideMenu ? .black : .clear, radius: 10)
                     }
+                    .onAppear {
+                        showSideMenu = false
+                    }
+                    .navigationBarHidden(true)
                 }
             }
             
